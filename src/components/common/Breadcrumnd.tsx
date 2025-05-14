@@ -1,4 +1,3 @@
-'use client'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
@@ -26,7 +25,8 @@ export default function Breadcrumnd({title, subtitle}: PropsType) {
           throw new Error('Failed to fetch posts')
         }
         const data = await response.json()
-        setPosts(data)
+        // Get only the first 5 posts
+        setPosts(data.slice(0, 5))
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unknown error occurred')
       } finally {
@@ -67,6 +67,7 @@ export default function Breadcrumnd({title, subtitle}: PropsType) {
 
           {/* Posts section */}
           <div className="posts-section mt-5">
+            <h2 className="mb-4">Latest Posts</h2>
             {loading && <p>Loading posts...</p>}
             {error && <p className="text-danger">Error: {error}</p>}
             

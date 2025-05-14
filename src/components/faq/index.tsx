@@ -12,7 +12,7 @@ export default function Faq() {
   return (
     <>
       <HeaderThree />
-      <Breadcrumnd title="Faq" subtitle="Faq" />
+      <Breadcrumnd title="Posts & Faq" subtitle="Faq" />
       <FaqHomeThree />
       <CounterHomeThree style_2={true} />
       <SubscribeHomeThree />
