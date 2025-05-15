@@ -12,7 +12,7 @@ export default function FooterOne() {
                 <div className="single-footer-widget">
                   <div className="widget-head">
                     <Link href="/" className="footer-logo">
-                      <img src="assets/img/logo/logo-light.png" alt="logo-img" />
+                      {/* <img src="assets/img/logo/logo-light.png" alt="logo-img" /> */}
                     </Link>
                   </div>
                   <div className="footer-content">
@@ -106,20 +106,19 @@ export default function FooterOne() {
                     <li>
                       <a href="#">
                         <i className="fa-solid fa-envelope"></i>
-                        debra.holt@example.com
+                        www.strategizeit.us
                       </a>
                     </li>
                     <li>
                       <a href="info@example.com" className="link">
                         <i className="fa-solid fa-location-dot"></i>
-                        1901 Thornridge Cir. Shiloh, <br /> Hawaii 81063
+                        Rayhana Tower, Zahraa El-Maadi, Cairo, Egypt 
                       </a>
                     </li>
                     <li>
                       <a href="#" className="link">
                         <i className="fa-solid fa-phone"></i>
-                        (270) 555-0117 <br />
-                          (270) 555-0118
+                        +2(02)25169957
                       </a>
                     </li>
                   </ul>
@@ -133,7 +132,7 @@ export default function FooterOne() {
             <div
               className="footer-wrapper footer-wrapperv01 d-md-flex d-grid gap-md-0 gap-2 align-items-center justify-content-md-between justify-content-center text-md-start text-center">
               <p className="wow fadeInLeft color-2" data-wow-delay=".3s">
-              © rk-theme {new Date().getFullYear()}. All Rights Reserved
+              © 2025 Strategizeit. {new Date().getFullYear()}. All Rights Reserved . Powered by Strategizeit
               </p>
               <ul className="footer-menu wow fadeInRight" data-wow-delay=".5s">
                 <li>
