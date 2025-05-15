@@ -9,7 +9,15 @@ export default function Login() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Add your login logic here
-    // After successful login, you might want to redirect to another page
+  }
+
+  const handleSocialLogin = (provider: 'facebook' | 'google') => {
+    // Handle social login redirection
+    if (provider === 'facebook') {
+      window.location.href = '/api/auth/facebook'
+    } else {
+      window.location.href = '/api/auth/google'
+    }
   }
 
   return (
@@ -33,18 +41,44 @@ export default function Login() {
                       <input type="password" placeholder="Password" required />
                     </div>
                     <div className="col-lg-12">
-                      <button type="submit" className="cmn-btn text-capitalize">
+                      <button type="submit" className="cmn-btn text-capitalize w-full">
                         Login
                       </button>
-                      <div className="mt-3">
-                        <span className="me-2" style={{color:"black"}}>Don't have an account?</span>
-                        <Link 
-                          href="/register" 
-                          className="text-primary hover:underline"
+                    </div>
+
+                    {/* Social Login Section */}
+                    <div className="col-lg-12">
+                      
+                        <span className="mx-4" style={{color: "black"}}>or</span>
+                       
+                      
+                      <div className="social-wrapper social-empact d-flex align-items-center justify-content-center gap-4 mb-4">
+                        {/* Facebook Login */}
+                        <button 
+                          onClick={() => handleSocialLogin('facebook')}
+                          className=" bg-transparent border-0 p-0"
                         >
-                          Register 
-                        </Link>
+                          <i className="fab fa-facebook-f  bg-blue-600 p-3 rounded-full hover:bg-blue-700 transition"></i>
+                        </button>
+                        
+                        {/* Google Login */}
+                        <button 
+                          onClick={() => handleSocialLogin('google')}
+                          className=" bg-transparent border-0 p-0"
+                        >
+                          <i className="fab fa-google  bg-red-600 p-3 rounded-full hover:bg-red-700 transition"></i>
+                        </button>
                       </div>
+                    </div>
+
+                    <div className="col-lg-12 mt-3 text-center">
+                      <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
+                      <Link 
+                        href="/register" 
+                        className="text-primary hover:underline"
+                      >
+                        Register
+                      </Link>
                     </div>
                   </form>
                 </div>
