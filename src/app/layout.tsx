@@ -2,6 +2,11 @@
 
 import "../styles/index.scss";
 
+export const metadata = {
+  title: 'HarvestGuard: Smart Farm Monitoring & Management Made Easy',
+  description: 'HarvestGuard empowers you to efficiently track and manage your farm, acting as your vigilant eyes on the ground, ensuring everything runs smoothly.',
+  
+}
 export default function RootLayout({
   children,
 }: Readonly<{
