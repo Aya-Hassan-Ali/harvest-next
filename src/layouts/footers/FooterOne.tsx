@@ -11,8 +11,8 @@ export default function FooterOne() {
               <div className="col-xl-4 col-lg-3 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
                 <div className="single-footer-widget">
                   <div className="widget-head">
-                    <Link href="/" className="footer-logo">
-                      {/* <img src="assets/img/logo/logo-light.png" alt="logo-img" /> */}
+                    <Link href="/" className="">
+                      <img src="assets/img/logo/logo1.png" width="220px" height="150px" alt="logo-img" />
                     </Link>
                   </div>
                   <div className="footer-content">

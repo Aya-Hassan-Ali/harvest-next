@@ -25,8 +25,8 @@ export default function HeaderOne({ style_2 }: PropsType) {
             <div className="header-main">
               <div className="header-left">
                 <div className="logo">
-                  <Link href="/" className="header-logo">
-                    {/* <img src="assets/img/logo/logo.png" alt="logo-img" /> */}
+                  <Link href="/" className="">
+                    <img src="assets/img/logo/logo1.png" width="186px" height="90px"alt="logo-img" />
                   </Link>
                 </div>
               </div>

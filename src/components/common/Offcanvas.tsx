@@ -38,7 +38,7 @@ export default function Offcanvas({ open, setOpen }: Props) {
                       <i className="fal fa-map-marker-alt"></i>
                     </div>
                     <div className="offcanvas__contact-text">
-                      <a target="_blank" href="#">Us 1216, road 45 house of street</a>
+                      <a target="_blank" href="#">Rayhana Tower, Zahraa El-Maadi, Cairo, Egypt</a>
                     </div>
                   </li>
                   <li className="d-flex align-items-center">
@@ -47,7 +47,7 @@ export default function Offcanvas({ open, setOpen }: Props) {
                     </div>
                     <div className="offcanvas__contact-text">
                       <a href="mailto:demo23yourmail.com"><span
-                        className="mailto:demo23yourmail.com">demo23yourmail.com</span></a>
+                        className="mailto:demo23yourmail.com">info@strategizeit.us</span></a>
                     </div>
                   </li>
                   <li className="d-flex align-items-center">
@@ -55,7 +55,7 @@ export default function Offcanvas({ open, setOpen }: Props) {
                       <i className="fal fa-clock"></i>
                     </div>
                     <div className="offcanvas__contact-text">
-                      <a target="_blank" href="#">Mod-friday, 06am -02pm</a>
+                      <a target="_blank" href="#">Open every day from 9am to 5pm except weekends</a>
                     </div>
                   </li>
                   <li className="d-flex align-items-center">
@@ -63,7 +63,7 @@ export default function Offcanvas({ open, setOpen }: Props) {
                       <i className="far fa-phone"></i>
                     </div>
                     <div className="offcanvas__contact-text">
-                      <a href="tel:+11002345909">(307) 555-0133</a>
+                      <a href="tel:+11002345909">+2(02)25169957</a>
                     </div>
                   </li>
                 </ul>
