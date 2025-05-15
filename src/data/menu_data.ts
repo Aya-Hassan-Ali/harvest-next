@@ -1,8 +1,8 @@
 import { StaticImageData } from "next/image";
 
-import demo_img_1 from "@/assets/img/header/home-1.jpg";
-import demo_img_2 from "@/assets/img/header/home-2.jpg";
-import demo_img_3 from "@/assets/img/header/home-3.jpg";
+// import demo_img_1 from "@/assets/img/header/home-1.jpg";
+// import demo_img_2 from "@/assets/img/header/home-2.jpg";
+// import demo_img_3 from "@/assets/img/header/home-3.jpg";
 
 interface DataType {
 	id: number;
@@ -23,12 +23,12 @@ const menu_data: DataType[] = [
 		id: 1,
 		title: "Home",
 		link: "#",
-		img_dropdown: true,
-		sub_menus: [
-			{ link: "/", title: "Home 01", demo_img: demo_img_1 },
-			{ link: "/home-2", title: "Home 02", demo_img: demo_img_2 },
-			{ link: "/home-3", title: "Home 03", demo_img: demo_img_3 },
-		],
+		// img_dropdown: true,
+		// sub_menus: [
+		// 	{ link: "/", title: "Home 01", demo_img: demo_img_1 },
+		// 	{ link: "/home-2", title: "Home 02", demo_img: demo_img_2 },
+		// 	{ link: "/home-3", title: "Home 03", demo_img: demo_img_3 },
+		// ],
 	},
 	{
 		id: 2,
@@ -66,24 +66,30 @@ const menu_data: DataType[] = [
 			{ link: "/blog-details", title: "Blog Details" },
 		],
 	},
-	{
-		id: 6,
-		title: "Pages",
-		link: "#",
-		has_dropdown: true,
-		sub_menus: [
-			{ link: "/about", title: "About" },
-			{ link: "/product-list", title: "Product" },
-			{ link: "/product-details", title: "Product Details" },
-			{ link: "/faq", title: "FAQ" },
-			{ link: "/contact", title: "Contact" },
-		],
-	},
+	// {
+	// 	id: 6,
+	// 	title: "Pages",
+	// 	link: "#",
+	// 	has_dropdown: true,
+	// 	sub_menus: [
+	// 		{ link: "/about", title: "About" },
+	// 		{ link: "/product-list", title: "Product" },
+	// 		{ link: "/product-details", title: "Product Details" },
+	// 		{ link: "/faq", title: "FAQ" },
+	// 		{ link: "/contact", title: "Contact" },
+	// 	],
+	// },
 
 	{
 		id: 7,
 		title: "Contact",
 		link: "/contact",
+		has_dropdown: false,
+	},
+	{
+		id: 7,
+		title: "Login or Register",
+		link: "/login",
 		has_dropdown: false,
 	},
 ];

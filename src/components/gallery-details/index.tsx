@@ -1,20 +1,23 @@
 
 
-import HeaderThree from '@/layouts/headers/HeaderThree'
+
 import React from 'react'
 import Breadcrumnd from '../common/Breadcrumnd'
-import SubscribeHomeThree from '../homes/home-3/SubscribeHomeThree'
-import FooterTwo from '@/layouts/footers/FooterTwo'
+
+
 import GalleryDetailsArea from './GalleryDetailsArea'
+import HeaderOne from '@/layouts/headers/HeaderOne'
+import SubscribeHomeOne from '../homes/home/SubscribeHomeOne'
+import FooterOne from '@/layouts/footers/FooterOne'
 
 export default function GalleryDetails() {
   return (
     <>
-    <HeaderThree />
+    <HeaderOne />
     <Breadcrumnd title="Gallery Details" subtitle="Gallery Details" />
     <GalleryDetailsArea />
-    <SubscribeHomeThree />
-    <FooterTwo />
+    <SubscribeHomeOne />
+    <FooterOne />
 
     </>
   )

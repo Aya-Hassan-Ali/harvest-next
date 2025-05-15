@@ -1,20 +1,22 @@
 
 
-import HeaderThree from '@/layouts/headers/HeaderThree'
+
 import React from 'react'
 import Breadcrumnd from '../common/Breadcrumnd'
-import SubscribeHomeThree from '../homes/home-3/SubscribeHomeThree'
-import FooterTwo from '@/layouts/footers/FooterTwo'
+
 import ProductDetailsArea from './ProductDetailsArea'
+import HeaderOne from '@/layouts/headers/HeaderOne'
+import SubscribeHomeOne from '../homes/home/SubscribeHomeOne'
+import FooterOne from '@/layouts/footers/FooterOne'
 
 export default function ProductDetails() {
   return (
     <>
-      <HeaderThree />
+      <HeaderOne />
       <Breadcrumnd title="Product Details" subtitle="Product Details" />
       <ProductDetailsArea />       
-      <SubscribeHomeThree />
-      <FooterTwo />
+      <SubscribeHomeOne />
+      <FooterOne />
     </>
   )
 }

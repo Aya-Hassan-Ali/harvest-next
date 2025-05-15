@@ -1,22 +1,21 @@
-import HeaderThree from '@/layouts/headers/HeaderThree'
+import HeaderOne from '@/layouts/headers/HeaderOne'
 import React from 'react'
 import Breadcrumnd from '../common/Breadcrumnd'
-import SubscribeHomeThree from '../homes/home-3/SubscribeHomeThree'
-import FooterTwo from '@/layouts/footers/FooterTwo'
-import ContactHomeTwo from '../homes/home-2/ContactHomeTwo'
+import SubscribeHomeOne from '../homes/home/SubscribeHomeOne'
+import CtaHomeOne from '../homes/home/CtaHomeOne'
 import GoogleMap from './GoogleMap'
 import ContactInfo from './ContactInfo'
-
+import FooterOne from '@/layouts/footers/FooterOne'
 export default function Contact() {
   return (
     <>
-      <HeaderThree />
+      <HeaderOne />
       <Breadcrumnd title="Contact" subtitle="Contact" />
-      <ContactHomeTwo />
+      <CtaHomeOne/>
       <GoogleMap />
       <ContactInfo />
-      <SubscribeHomeThree />
-      <FooterTwo />
+      <SubscribeHomeOne/>
+      <FooterOne />
     </>
   )
 }

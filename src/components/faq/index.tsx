@@ -1,22 +1,25 @@
 
 
-import HeaderThree from '@/layouts/headers/HeaderThree'
+
 import React from 'react'
 import Breadcrumnd from '../common/Breadcrumnd'
-import FooterTwo from '@/layouts/footers/FooterTwo'
-import SubscribeHomeThree from '../homes/home-3/SubscribeHomeThree'
-import FaqHomeThree from '../homes/home-3/FaqHomeThree'
-import CounterHomeThree from '../homes/home-3/CounterHomeThree'
+
+// import FaqHomeThree from '../homes/home-3/FaqHomeThree'
+
+import HeaderOne from '@/layouts/headers/HeaderOne'
+import CounterHomeOne from '../homes/home/CounterHomeOne'
+import SubscribeHomeOne from '../homes/home/SubscribeHomeOne'
+import FooterOne from '@/layouts/footers/FooterOne'
 
 export default function Faq() {
   return (
     <>
-      <HeaderThree />
+      <HeaderOne />
       <Breadcrumnd title="Posts & Faq" subtitle="Faq" />
-      <FaqHomeThree />
-      <CounterHomeThree style_2={true} />
-      <SubscribeHomeThree />
-      <FooterTwo />
+      {/* <FaqHomeOne/> */}
+      <CounterHomeOne style_2={true} />
+      <SubscribeHomeOne />
+      <FooterOne />
     </>
   )
 }

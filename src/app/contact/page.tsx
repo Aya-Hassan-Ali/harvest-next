@@ -1,5 +1,4 @@
 
-
 import Contact from '@/components/contact'
 import Wrapper from '@/layouts/Wrapper'
 import { Metadata } from 'next';

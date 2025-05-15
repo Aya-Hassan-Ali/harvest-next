@@ -1,20 +1,22 @@
 
 
 import React from 'react'
-import HeaderThree from '@/layouts/headers/HeaderThree'
+
 import Breadcrumnd from '../common/Breadcrumnd'
 import ServiceArea from './ServiceArea'
-import SubscribeHomeThree from '../homes/home-3/SubscribeHomeThree'
-import FooterTwo from '@/layouts/footers/FooterTwo'
+
+import HeaderOne from '@/layouts/headers/HeaderOne'
+import SubscribeHomeOne from '../homes/home/SubscribeHomeOne'
+import FooterOne from '@/layouts/footers/FooterOne'
 
 export default function Service() {
   return (
     <>
-      <HeaderThree />
+      <HeaderOne />
       <Breadcrumnd title="Services" subtitle="Services" />
       <ServiceArea />
-      <SubscribeHomeThree />
-      <FooterTwo />
+      <SubscribeHomeOne />
+      <FooterOne />
 
     </>
   )
