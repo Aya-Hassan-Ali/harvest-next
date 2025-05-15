@@ -30,7 +30,7 @@ export default function Login() {
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
                     <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
-                      Login
+                      Sign In
                     </h5>
                   </div>
                   <form onSubmit={handleSubmit} className="row g-xl-4 g-3">
@@ -40,19 +40,16 @@ export default function Login() {
                     <div className="col-lg-12">
                       <input type="password" placeholder="Password" required />
                     </div>
-                    <div className="col-lg-12 " >
-                      <button type="submit" className="cmn-btn text-capitalize ">
-                        Login
+                    <div className="col-lg-12 text-center">
+                      <button type="submit" className="cmn-btn col-lg-12 text-capitalize my-1 ">
+                        Sign In
                       </button>
-                        
-                       
-                      
-                     
+         
                         {/* Facebook Login */}
-                        <span className="mx-4" style={{color: "black"}}>or</span>
+                        <p className="mx-4" style={{color: "black"}}>or sign in with</p>
                         <button 
                           onClick={() => handleSocialLogin('facebook')}
-                          className=" bg-transparent border-0 p-0"
+                          className=" cmn-btn text-capitalize bg-primary border-radius p-0 mx-2 col-lg-2"
                         >
                           <i className="fab fa-facebook-f  bg-blue-600 p-3 rounded-full hover:bg-blue-700 transition"></i>
                         </button>
@@ -60,7 +57,7 @@ export default function Login() {
                         {/* Google Login */}
                         <button 
                           onClick={() => handleSocialLogin('google')}
-                          className=" bg-transparent border-0 p-0"
+                          className=" cmn-btn text-capitalizecmn-btn text-capitalize bg-danger border-radius p-0 my-2 col-lg-2"
                         >
                           <i className="fab fa-google  bg-red-600 p-3 rounded-full hover:bg-red-700 transition"></i>
                         </button>
@@ -77,9 +74,9 @@ export default function Login() {
                       <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
                       <Link 
                         href="/register" 
-                        className="text-primary hover:underline"
+                        className="text-success  hover:underline"
                       >
-                        Register
+                        Sign Up
                       </Link>
                     </div>
                   </form>
@@ -87,8 +84,8 @@ export default function Login() {
               </div>
             </div>
             <div className="col-md-6">
-              <div className="taklking-cotnact-thumb w-100 wow fadeInRight" data-wow-delay=".4s">
-                <img src="assets/img/contact/talking-contact.png" alt="img" className="w-100" />
+              <div className=" w-100 wow fadeInRight" data-wow-delay=".4s">
+                <img src="assets/img/banner/care.jpg" alt="img" className="w-100" />
               </div>
             </div>
           </div>

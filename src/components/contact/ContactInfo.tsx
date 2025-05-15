@@ -18,7 +18,7 @@ export default function ContactInfo() {
                     Address
                   </h5>
                   <a href="#" className="pra">
-                    Dhaka 102, 8000 sent behaibior utl <br /> 1216, road 45 house of street
+                    Rayhana Tower, Zahraa El-Maadi, Cairo, Egypt<br /> 
                   </a>
                 </div>
               </div>
@@ -33,8 +33,8 @@ export default function ContactInfo() {
                     Lets Talk us
                   </h5>
                   <a href="#" className="pra">
-                    Phone number: +32566 - 800 - 890 <br />
-                    Fax: 1234 -58963 - 007
+                    Telephone number: +2(02)25169957 <br />
+                    
                   </a>
                 </div>
               </div>
@@ -49,8 +49,7 @@ export default function ContactInfo() {
                     Send us email
                   </h5>
                   <a href="#" className="pra">
-                    demo0023yourmailhotmail.com <br />
-                    demo23yourmail.com
+                    info@strategizeit.us
                   </a>
                 </div>
               </div>

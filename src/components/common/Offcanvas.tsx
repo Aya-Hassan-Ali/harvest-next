@@ -60,7 +60,7 @@ export default function Offcanvas({ open, setOpen }: Props) {
                   </li>
                   <li className="d-flex align-items-center">
                     <div className="offcanvas__contact-icon mr-15">
-                      <i className="far  fa-phone"></i>
+                      <i className="far fa-phone"></i>
                     </div>
                     <div className="offcanvas__contact-text">
                       <a href="tel:+11002345909">+2(02)25169957</a>

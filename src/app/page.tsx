@@ -5,7 +5,7 @@ import HomeOne from '@/components/homes/home';
 import Wrapper from '@/layouts/Wrapper';
 
 export const metadata: Metadata = {
-  title: 'FarmHub - Agriculture Farming Next js Template',
+  title: 'Harvest Guard - Agriculture Farming',
   description: 'Introducing Farmhub - the ultimate Next template for showcasing your agricultural or organic business. Designed with a sleek and modern aesthetic, Farmhub effortlessly captures the essence of sustainable farming and food production.',
 };
 

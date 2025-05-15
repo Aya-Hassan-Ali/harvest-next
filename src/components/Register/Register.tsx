@@ -21,7 +21,7 @@ export default function Login() {
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
                     <h5 className="p1-clr wow fadeInLeft" data-wow-delay="0.4s">
-                      Register
+                      Sign Up
                     </h5>
                     
                   </div>
@@ -43,12 +43,12 @@ export default function Login() {
                        Register
                       </button>
                       <div className="mt-3">
-                        <span className="me-2" style={{color:"black"}}>Don't have an account?</span>
+                        <span className="me-2" style={{color:"black"}}>Already have an account?</span>
                         <Link 
-                          href="/register" 
-                          className="text-primary hover:underline"
+                          href="/login" 
+                          className="text-primary hover:underline no-wrap"
                         >
-                          Login 
+                          Sign In 
                         </Link>
                       </div>
                     </div>
@@ -57,8 +57,8 @@ export default function Login() {
               </div>
             </div>
             <div className="col-md-6">
-              <div className="taklking-cotnact-thumb w-100 wow fadeInRight" data-wow-delay=".4s">
-                <img src="assets/img/contact/talking-contact.png" alt="img" className="w-100" />
+              <div className=" w-100 wow fadeInRight" data-wow-delay=".4s">
+                <img src="assets/img/banner/care.jpg" alt="img" className="w-100" />
               </div>
             </div>
           </div>
