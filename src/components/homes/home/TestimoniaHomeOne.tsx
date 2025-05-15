@@ -53,7 +53,7 @@ export default function TestimoniaHomeOne() {
                         <p>
                           Agriculture and farming are essential industries that involve the
                           cultivation of crops, raising of livestock, and
-                          production a of food and other agricultural products Agriculture farming are
+                          production a of food and other agricultural products HarvestGuard: Smart Farm Monitoring & Management Made Easy are
                           essential industries involve cultivation
                         </p>
                         <div className="review-man">
@@ -85,7 +85,7 @@ export default function TestimoniaHomeOne() {
                           Agriculture and farming are essential industries that involve the
                           cultivation of crops, raising of
                           livestock, and
-                          production a of food and other agricultural products Agriculture farming are
+                          production a of food and other agricultural products HarvestGuard: Smart Farm Monitoring & Management Made Easy are
                           essential industries involve
                           cultivation
                         </p>
@@ -118,7 +118,7 @@ export default function TestimoniaHomeOne() {
                           Agriculture and farming are essential industries that involve the
                           cultivation of crops, raising of
                           livestock, and
-                          production a of food and other agricultural products Agriculture farming are
+                          production a of food and other agricultural products HarvestGuard: Smart Farm Monitoring & Management Made Easy are
                           essential industries involve
                           cultivation
                         </p>

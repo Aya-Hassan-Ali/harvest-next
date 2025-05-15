@@ -5,8 +5,8 @@ import HomeOne from '@/components/homes/home';
 import Wrapper from '@/layouts/Wrapper';
 
 export const metadata: Metadata = {
-  title: 'Harvest Guard - Agriculture Farming',
-  description: 'Introducing Farmhub - the ultimate Next template for showcasing your agricultural or organic business. Designed with a sleek and modern aesthetic, Farmhub effortlessly captures the essence of sustainable farming and food production.',
+  title: 'Harvest Guard - HarvestGuard: Smart Farm Monitoring & Management Made Easy',
+  description: 'HarvestGuard empowers you to efficiently track and manage your farm, acting as your vigilant eyes on the ground, ensuring everything runs smoothly.',
 };
 
 export default function index() {

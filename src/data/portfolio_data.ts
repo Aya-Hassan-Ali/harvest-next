@@ -26,7 +26,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 1200,
     image: portfolio_img_1,
     category: "Fresh",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 80,
     image: portfolio_img_2,
     category: "Organic",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 45,
     image: portfolio_img_3,
     category: "Vegetables",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 44,
     image: portfolio_img_4,
     category: "Vegetables",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 5,
@@ -58,7 +58,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 80,
     image: portfolio_img_5,
     category: "Organic",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 6,
@@ -66,7 +66,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 45,
     image: portfolio_img_6,
     category: "Fresh",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   // data repeat
   {
@@ -75,7 +75,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 120,
     image: portfolio_img_7,
     category: "Fresh",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 2,
@@ -83,7 +83,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 80,
     image: portfolio_img_8,
     category: "Organic",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 3,
@@ -91,7 +91,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 45,
     image: portfolio_img_3,
     category: "Vegetables",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 4,
@@ -99,7 +99,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 44,
     image: portfolio_img_4,
     category: "Vegetables",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 5,
@@ -107,7 +107,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 80,
     image: portfolio_img_5,
     category: "Organic",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
   {
     id: 6,
@@ -115,7 +115,7 @@ const portfolio_data:PortfolioDataType[] = [
     price: 45,
     image: portfolio_img_6,
     category: "Fresh",
-    description: "Agriculture farming are the essential",
+    description: "HarvestGuard: Smart Farm Monitoring & Management Made Easy are the essential",
   },
 ]
 
