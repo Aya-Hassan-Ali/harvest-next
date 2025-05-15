@@ -38,7 +38,7 @@ export default function Login() {
                     {/* <div className="col-lg-12">
                       <textarea name="message" placeholder="Message"></textarea>
                     </div> */}
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 ">
                       <button type="submit" className="cmn-btn text-capitalize">
                        Register
                       </button>

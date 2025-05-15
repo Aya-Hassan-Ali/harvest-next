@@ -29,7 +29,7 @@ export default function Login() {
               <div className="talking-contact-box">
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
-                    <h5 className="p1-clr wow fadeInLeft" data-wow-delay="0.4s">
+                    <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
                       Login
                     </h5>
                   </div>
@@ -40,20 +40,16 @@ export default function Login() {
                     <div className="col-lg-12">
                       <input type="password" placeholder="Password" required />
                     </div>
-                    <div className="col-lg-12">
-                      <button type="submit" className="cmn-btn text-capitalize w-full">
+                    <div className="col-lg-12 " >
+                      <button type="submit" className="cmn-btn text-capitalize ">
                         Login
                       </button>
-                    </div>
-
-                    {/* Social Login Section */}
-                    <div className="col-lg-12">
-                      
-                        <span className="mx-4" style={{color: "black"}}>or</span>
+                        
                        
                       
-                      <div className="social-wrapper social-empact d-flex align-items-center justify-content-center gap-4 mb-4">
+                     
                         {/* Facebook Login */}
+                        <span className="mx-4" style={{color: "black"}}>or</span>
                         <button 
                           onClick={() => handleSocialLogin('facebook')}
                           className=" bg-transparent border-0 p-0"
@@ -68,8 +64,14 @@ export default function Login() {
                         >
                           <i className="fab fa-google  bg-red-600 p-3 rounded-full hover:bg-red-700 transition"></i>
                         </button>
-                      </div>
+                      
                     </div>
+
+                    {/* Social Login Section */}
+                    
+                      
+                      
+                    
 
                     <div className="col-lg-12 mt-3 text-center">
                       <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
