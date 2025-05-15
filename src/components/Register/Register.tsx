@@ -21,7 +21,7 @@ export default function Login() {
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
                     <h5 className="p1-clr wow fadeInLeft" data-wow-delay="0.4s">
-                      Login
+                      Register
                     </h5>
                     
                   </div>
@@ -40,7 +40,7 @@ export default function Login() {
                     </div> */}
                     <div className="col-lg-6">
                       <button type="submit" className="cmn-btn text-capitalize">
-                        Login
+                       Register
                       </button>
                       <div className="mt-3">
                         <span className="me-2" style={{color:"black"}}>Don't have an account?</span>
