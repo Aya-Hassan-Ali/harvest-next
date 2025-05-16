@@ -12,12 +12,12 @@ export default function FooterOne() {
                 <div className="single-footer-widget">
                   <div className="widget-head">
                     <Link href="/" className="">
-                      <img src="assets/img/logo/logo1.png" width="220px" height="150px" alt="logo-img" />
+                      <img src="assets/img/logo/logo1.png" width="190px" height="80px" alt="logo-img" />
                     </Link>
                   </div>
                   <div className="footer-content">
                     <p className="pre-pragraph">
-                      Lorem ipsum dolor amet consectetur <br /> sell adipis elit phase nibh ellentes
+                      Smart Farm Monitoring & Management Made Easy <br /> acting as your vigilant eyes on the ground
                     </p>
                     <div className="social-wrapper social-empact d-flex align-items-center">
                       <a href="#" className="white-clr"><i className="white-clr fab fa-facebook-f"></i></a>

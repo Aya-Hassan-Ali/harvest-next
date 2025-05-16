@@ -20,16 +20,16 @@ export default function Login() {
               <div className="talking-contact-box">
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
-                    <h5 className="p1-clr wow fadeInLeft" data-wow-delay="0.4s">
+                    <h5 className="p1-clr wow fadeInLeft text-center" data-wow-delay="0.4s">
                       Sign Up
                     </h5>
                     
                   </div>
                   <form onSubmit={(e) => e.preventDefault()} className="row g-xl-4 g-3">
-                    <div className="col-lg-6">
+                    <div className="col-lg-12">
                       <input type="text" placeholder="Name" />
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-12">
                       <input type="email" placeholder="E-mail" />
                     </div>
                     <div className="col-lg-12">
@@ -38,9 +38,9 @@ export default function Login() {
                     {/* <div className="col-lg-12">
                       <textarea name="message" placeholder="Message"></textarea>
                     </div> */}
-                    <div className="col-lg-6 ">
-                      <button type="submit" className="cmn-btn text-capitalize">
-                       Register
+                    <div className="col-lg-12 text-center">
+                      <button type="submit" className="cmn-btn col-lg-12 text-capitalize my-1">
+                      Sign Up
                       </button>
                       <div className="mt-3">
                         <span className="me-2" style={{color:"black"}}>Already have an account?</span>
