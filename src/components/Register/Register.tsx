@@ -16,7 +16,7 @@ export default function Login() {
       <section className="talking-section overflow-hidden space-top">
         <div className="container">
           <div className="row g-4 align-items-xl-center flex-row-reverse justify-content-between">
-            <div className="col-md-6">
+            <div className="col-md-6 ">
               <div className="talking-contact-box">
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
