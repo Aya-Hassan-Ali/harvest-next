@@ -1,141 +1,221 @@
-"use client";
-import { signIn } from "next-auth/react";
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+"use client"
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useGoogleLogin } from '@react-oauth/google'
 
 export default function Login() {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
+  const [formData, setFormData] = useState({
+    email: '',
+    phoneNumber: '',
+    password: ''
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email')
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+  // Google login handler
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (credentialResponse) => {
+      setIsLoading(true)
+      setError('')
+      
+      try {
+        const response = await fetch('http://167.86.100.138:3000/auth/google-login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            idToken: credentialResponse.access_token
+          })
+        })
+
+        const data = await response.json()
+
+        if (data.access_token) {
+          localStorage.setItem('access_token', data.access_token)
+          router.push('/')
+        } else {
+          setError('Google login failed: No access token received')
+        }
+      } catch (err) {
+        setError('An error occurred during Google login')
+        console.error('Google login error:', err)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    onError: () => {
+      setError('Google login failed')
+    }
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError('')
+
+    if (!formData.email && !formData.phoneNumber) {
+      setError('Please provide either email or phone number')
+      setIsLoading(false)
+      return
+    }
 
     try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
-        callbackUrl: '/'
-      });
+      const response = await fetch('http://167.86.100.138:3000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: formData.email || undefined,
+          phoneNumber: formData.phoneNumber || undefined,
+          password: formData.password
+        })
+      })
 
-      if (result?.error) {
-        throw new Error(result.error);
-      }
+      const data = await response.json()
 
-      if (result?.url) {
-        router.push(result.url);
+      if (data.status === 'success') {
+        localStorage.setItem('access_token', data.access_token)
+        localStorage.setItem('user', JSON.stringify(data.user))
+        router.push('/')
+      } else {
+        setError(data.message || 'Login failed')
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError('An error occurred during login')
+      console.error('Login error:', err)
     } finally {
-      setLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
-  const handleSocialLogin = (provider: 'facebook' | 'google') => {
-    signIn(provider, { callbackUrl: '/' });
-  };
+  const toggleLoginMethod = () => {
+    setLoginMethod(prev => prev === 'email' ? 'phone' : 'email')
+    setFormData(prev => ({
+      ...prev,
+      email: loginMethod === 'email' ? '' : prev.email,
+      phoneNumber: loginMethod === 'phone' ? '' : prev.phoneNumber
+    }))
+  }
 
   return (
-    <section className="talking-section overflow-hidden space-top">
-      <div className="container">
-        <div className="row g-4 align-items-xl-center flex-row-reverse justify-content-between">
-          <div className="col-md-6">
-            <div className="talking-contact-box">
-              <div className="conatact-box common-contact-inner position-relative">
-                <div className="section-title mb-40">
-                  <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
-                    Sign In
-                  </h5>
-                </div>
-
-                {error && (
-                  <div className="alert alert-danger mb-4" role="alert">
-                    {error}
+    <>
+      <section className="talking-section overflow-hidden space-top">
+        <div className="container">
+          <div className="row g-4 align-items-xl-center flex-row-reverse justify-content-between">
+            <div className="col-md-6">
+              <div className="talking-contact-box">
+                <div className="conatact-box common-contact-inner position-relative">
+                  <div className="section-title mb-40">
+                    <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
+                      Sign In
+                    </h5>
                   </div>
-                )}
-
-                <form onSubmit={handleEmailLogin} className="row g-xl-4 g-3">
-                  <div className="col-lg-12">
-                    <input 
-                      type="email" 
-                      placeholder="E-mail" 
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="col-lg-12">
-                    <input 
-                      type="password" 
-                      placeholder="Password" 
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="form-control"
-                    />
-                  </div>
-                  <div className="col-lg-12 text-center">
-                    <button 
-                      type="submit" 
-                      className="cmn-btn col-lg-12 text-capitalize my-1"
-                      disabled={loading}
-                    >
-                      {loading ? 'Signing In...' : 'Sign In'}
-                    </button>
-
-                    <p className="mx-4 my-3" style={{color: "black"}}>or sign in with</p>
-                    
+                  {error && (
+                    <div className="alert alert-danger mb-3">
+                      {error}
+                    </div>
+                  )}
+                  <form onSubmit={handleSubmit} className="row g-xl-4 g-3">
+                    {loginMethod === 'email' ? (
+                      <div className="col-lg-12">
+                        <input 
+                          type="email" 
+                          name="email"
+                          placeholder="E-mail" 
+                          value={formData.email}
+                          onChange={handleChange}
+                          required={loginMethod === 'email'}
+                        />
+                      </div>
+                    ) : (
+                      <div className="col-lg-12">
+                        <input 
+                          type="tel" 
+                          name="phoneNumber"
+                          placeholder="Phone Number" 
+                          value={formData.phoneNumber}
+                          onChange={handleChange}
+                          required={loginMethod === 'phone'}
+                        />
+                      </div>
+                    )}
+                    <div className="col-lg-12">
+                      <input 
+                        type="password" 
+                        name="password"
+                        placeholder="Password" 
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
                     <div className="col-lg-12 text-center">
                       <button 
-                        type="button"
-                        onClick={() => handleSocialLogin('facebook')}
-                        className="cmn-btn text-capitalize bg-primary border-radius p-0 mx-2 col-lg-2"
-                        
-                        disabled={loading}
+                        type="button" 
+                        className="text-primary mb-2 hover:underline"
+                        onClick={toggleLoginMethod}
                       >
-                        <i className="fab fa-facebook-f p-3"></i>
-                      </button>
-                      
-                      <button 
-                        type="button"
-                        onClick={() => handleSocialLogin('google')}
-                        className="cmn-btn text-capitalizecmn-btn text-capitalize bg-danger border-radius p-0 my-2 col-lg-2"
-                        
-                        disabled={loading}
-                      >
-                        <i className="fab fa-google p-3"></i>
+                        {loginMethod === 'email' 
+                          ? 'Use phone number instead' 
+                          : 'Use email instead'}
                       </button>
                     </div>
-                  </div>
-
-                  <div className="col-lg-12 mt-3 text-center">
-                    <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
-                    <Link 
-                      href="/register" 
-                      className="text-success hover:underline"
-                    >
-                      Sign Up
-                    </Link>
-                  </div>
-                </form>
+                    <div className="col-lg-12 text-center">
+                      <button 
+                        type="submit" 
+                        className="cmn-btn col-lg-12 text-capitalize my-1"
+                        disabled={isLoading}
+                      >
+                        {isLoading ? 'Signing In...' : 'Sign In'}
+                      </button>
+                    </div>
+                    <div className="col-lg-12 text-center">
+                      <p className="mx-4" style={{color: "black"}}>or sign in with</p>
+                      <div className="d-flex justify-content-center gap-2">
+                        <button 
+                          onClick={() => googleLogin()}
+                          className="cmn-btn text-capitalize bg-danger border-radius p-0"
+                          style={{width: '40px', height: '40px'}}
+                          disabled={isLoading}
+                        >
+                          <i className="fab fa-google p-2"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="col-lg-12 mt-3 text-center">
+                      <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
+                      <Link 
+                        href="/register" 
+                        className="text-success hover:underline"
+                      >
+                        Sign Up
+                      </Link>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="w-100 wow fadeInRight" data-wow-delay=".4s">
+                <img src="assets/img/banner/care.jpg" alt="img" className="w-100" />
               </div>
             </div>
           </div>
-          <div className="col-md-6">
-            <div className="w-100 wow fadeInRight" data-wow-delay=".4s">
-              <img src="/assets/img/banner/care.jpg" alt="login" className="w-100 rounded" />
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    </>
+  )
 }

@@ -1,7 +1,7 @@
 
 
 import "../styles/index.scss";
-
+import { GoogleOAuthProvider } from '@react-oauth/google'
 export const metadata = {
   title: 'HarvestGuard: Smart Farm Monitoring & Management Made Easy',
   description: 'HarvestGuard empowers you to efficiently track and manage your farm, acting as your vigilant eyes on the ground, ensuring everything runs smoothly.',
@@ -13,6 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+     <GoogleOAuthProvider clientId="81889054187-6god7vbdlc9c5rmmpf7vljdnob456ob0.apps.googleusercontent.com">
     <html lang="en"> 
     <head>
       <link
@@ -24,5 +25,6 @@ export default function RootLayout({
         {children}
       </body>
     </html>
+    </GoogleOAuthProvider>
   );
 }
