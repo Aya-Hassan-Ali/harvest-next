@@ -37,7 +37,7 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/login',
-    error: '/login', // Redirect to login on error
+    // error: '/login', // Redirect to login on error
   },
   callbacks: {
     // async jwt({ token, user }) {
