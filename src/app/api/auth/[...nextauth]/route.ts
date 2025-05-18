@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
   providers: [
@@ -12,18 +13,66 @@ const handler = NextAuth({
       clientId: process.env.FACEBOOK_CLIENT_ID!,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
     }),
+    // CredentialsProvider({
+    //   name: "Credentials",
+    //   credentials: {
+    //     email: { label: "Email", type: "email" },
+    //     password: { label: "Password", type: "password" }
+    //   },
+    //   async authorize(credentials) {
+    //     // Replace with your actual authentication logic
+    //     const mockUser = {
+    //       id: "1",
+    //       email: "test@example.com",
+    //       name: "Test User"
+    //     };
+        
+    //     if (credentials?.email === mockUser.email) {
+    //       return mockUser;
+    //     }
+    //     return null;
+    //   }
+    // }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  // Optional: Customize pages if needed
   pages: {
     signIn: '/login',
+    error: '/login', // Redirect to login on error
   },
-//   session: {
-//     strategy: "jwt",
-//     // maxAge: 30 * 24 * 60 * 60, // 30 days
-//     maxAge:.5 * 24 * 60 * 60, // 12 hours
-//   },
+  callbacks: {
+    // async jwt({ token, user }) {
+    //   if (user) {
+    //     token.id = user.id;
+    //   }
+    //   return token;
+    // },
+    // async session({ session, token }) {
+    //   if (token?.id) {
+    //     session.user.id = token.id;
+    //   }
+    //   return session;
+    // },
+    async redirect({ url, baseUrl }) {
+      // Handle relative URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allow same domain redirects
+      if (new URL(url).origin === baseUrl) return url;
+      // Default to base URL
+      return baseUrl;
+    }
+  },
+  cookies: {
+    sessionToken: {
+      name: "__Secure-next-auth.session-token",
+      options: {
+        path: "/",
+        secure: true,
+        domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined,
+        sameSite: "lax",
+      },
+    },
+  },
+  debug: process.env.NODE_ENV !== "production",
 });
 
 export { handler as GET, handler as POST };
-
