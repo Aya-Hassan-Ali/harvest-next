@@ -18,11 +18,11 @@ const handler = NextAuth({
   pages: {
     signIn: '/login',
   },
-  session: {
-    strategy: "jwt",
-    // maxAge: 30 * 24 * 60 * 60, // 30 days
-    maxAge:.25 * 24 * 60 * 60, // 12 hours
-  },
+  // session: {
+  //   strategy: "jwt",
+  //   // maxAge: 30 * 24 * 60 * 60, // 30 days
+  //   maxAge:.25 * 24 * 60 * 60, // 12 hours
+  // },
 });
 
 export { handler as GET, handler as POST };
