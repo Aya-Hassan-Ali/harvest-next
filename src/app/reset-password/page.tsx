@@ -1,5 +1,12 @@
-// app/reset-password/page.tsx
-import ResetPasswordForm from '@/components/reset-password/ResetPasswordForm';
+'use client';
+
+import dynamic from 'next/dynamic';
+
+// Dynamically import the form with SSR disabled
+const ResetPasswordForm = dynamic(
+  () => import('@/components/reset-password/ResetPasswordForm'),
+  { ssr: false }
+);
 
 export default function ResetPasswordPage() {
   return (

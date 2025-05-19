@@ -1,4 +1,3 @@
-// components/ResetPasswordForm.tsx
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -19,7 +18,7 @@ export default function ResetPasswordForm() {
 
   // Extract token from URL if present
   useEffect(() => {
-    const token = searchParams.get('token');
+    const token = searchParams?.get('token');
     if (token) {
       setFormData(prev => ({ ...prev, token }));
     }
@@ -30,7 +29,6 @@ export default function ResetPasswordForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
 
     // Calculate password strength
-    
     if (name === 'newPassword') {
       let strength = 0;
       if (value.length >= 8) strength += 1;
