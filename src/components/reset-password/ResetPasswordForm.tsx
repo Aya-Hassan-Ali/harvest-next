@@ -30,6 +30,7 @@ export default function ResetPasswordForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
 
     // Calculate password strength
+    
     if (name === 'newPassword') {
       let strength = 0;
       if (value.length >= 8) strength += 1;
