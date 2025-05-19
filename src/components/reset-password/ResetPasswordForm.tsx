@@ -16,14 +16,21 @@ export default function ResetPasswordForm() {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Extract token from URL if present
   useEffect(() => {
-    const token = searchParams.get('token');
-    if (token) {
-      setFormData(prev => ({ ...prev, token }));
+    if (isMounted && searchParams) {
+      const token = searchParams.get('token');
+      if (token) {
+        setFormData(prev => ({ ...prev, token }));
+      }
     }
-  }, [searchParams]);
+  }, [isMounted, searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -107,6 +114,28 @@ export default function ResetPasswordForm() {
     }
   };
 
+  if (!isMounted) {
+    return (
+      <section className="talking-section overflow-hidden space-top">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-8 col-lg-6">
+              <div className="talking-contact-box">
+                <div className="conatact-box common-contact-inner position-relative">
+                  <div className="section-title mb-40">
+                    <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
+                      Loading...
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="talking-section overflow-hidden space-top">
       <div className="container">
@@ -136,7 +165,6 @@ export default function ResetPasswordForm() {
                 )}
                 
                 <form onSubmit={handleSubmit} className="row g-xl-4 g-3">
-                  {/* Hidden token input - still submitted with form */}
                   <input
                     type="hidden"
                     name="token"
