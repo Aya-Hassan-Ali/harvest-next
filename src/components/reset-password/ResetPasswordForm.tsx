@@ -1,14 +1,19 @@
 // components/ResetPasswordForm.tsx
 'use client';
+
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({
+  tokenFromServer = '',
+}: {
+  tokenFromServer?: string;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
-    token: '',
+    token: tokenFromServer,
     newPassword: '',
     confirmPassword: '',
   });
@@ -16,21 +21,16 @@ export default function ResetPasswordForm() {
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
 
+  // Extract token from URL if not provided via server props
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  // Extract token from URL if present
-  useEffect(() => {
-    if (isMounted && searchParams) {
+    if (!tokenFromServer && searchParams) {
       const token = searchParams.get('token');
       if (token) {
         setFormData(prev => ({ ...prev, token }));
       }
     }
-  }, [isMounted, searchParams]);
+  }, [tokenFromServer, searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -113,28 +113,6 @@ export default function ResetPasswordForm() {
       default: return 'bg-gray-200';
     }
   };
-
-  if (!isMounted) {
-    return (
-      <section className="talking-section overflow-hidden space-top">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-8 col-lg-6">
-              <div className="talking-contact-box">
-                <div className="conatact-box common-contact-inner position-relative">
-                  <div className="section-title mb-40">
-                    <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
-                      Loading...
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="talking-section overflow-hidden space-top">
