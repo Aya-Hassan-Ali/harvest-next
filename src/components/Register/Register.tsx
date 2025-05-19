@@ -41,7 +41,8 @@ export default function Register() {
                 })
             })
 
-            const data = await response.json()
+            const data = await response.json() 
+            
 
             if (data.status === 'success') {
                 // Registration successful, redirect to login page
