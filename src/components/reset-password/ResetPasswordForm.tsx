@@ -1,19 +1,14 @@
 // components/ResetPasswordForm.tsx
 'use client';
-
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function ResetPasswordForm({
-  tokenFromServer = '',
-}: {
-  tokenFromServer?: string;
-}) {
+export default function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
-    token: tokenFromServer,
+    token: '',
     newPassword: '',
     confirmPassword: '',
   });
@@ -22,15 +17,13 @@ export default function ResetPasswordForm({
   const [successMessage, setSuccessMessage] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(0);
 
-  // Extract token from URL if not provided via server props
+  // Extract token from URL if present
   useEffect(() => {
-    if (!tokenFromServer && searchParams) {
-      const token = searchParams.get('token');
-      if (token) {
-        setFormData(prev => ({ ...prev, token }));
-      }
+    const token = searchParams.get('token');
+    if (token) {
+      setFormData(prev => ({ ...prev, token }));
     }
-  }, [tokenFromServer, searchParams]);
+  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -143,6 +136,7 @@ export default function ResetPasswordForm({
                 )}
                 
                 <form onSubmit={handleSubmit} className="row g-xl-4 g-3">
+                  {/* Hidden token input - still submitted with form */}
                   <input
                     type="hidden"
                     name="token"
