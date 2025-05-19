@@ -13,7 +13,10 @@ export default function Login() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email')
+  const [showForgotPassword, setShowForgotPassword] = useState(false)
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState('')
 
   // Google login handler
   const googleLogin = useGoogleLogin({
@@ -22,13 +25,26 @@ export default function Login() {
       setError('')
       
       try {
+        // Get user info from Google
+        const userInfo = await fetch(
+          'https://www.googleapis.com/oauth2/v3/userinfo',
+          {
+            headers: {
+              Authorization: `Bearer ${credentialResponse.access_token}`,
+            },
+          }
+        ).then(res => res.json())
+
+        // Send to your backend
         const response = await fetch('http://167.86.100.138:3000/auth/google-login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            idToken: credentialResponse.access_token
+            idToken: credentialResponse.access_token,
+            email: userInfo.email,
+            name: userInfo.name
           })
         })
 
@@ -38,7 +54,7 @@ export default function Login() {
           localStorage.setItem('access_token', data.access_token)
           router.push('/')
         } else {
-          setError('Google login failed: No access token received')
+          setError(data.message || 'Google login failed: No access token received')
         }
       } catch (err) {
         setError('An error occurred during Google login')
@@ -101,6 +117,44 @@ export default function Login() {
     }
   }
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError('')
+    
+    if (!forgotPasswordEmail) {
+      setError('Please provide your email address')
+      setIsLoading(false)
+      return
+    }
+
+    try {
+      const response = await fetch('http://167.86.100.138:3000/auth/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: forgotPasswordEmail
+        })
+      })
+
+      const data = await response.json()
+
+      if (data.status === 'success') {
+        setSuccessMessage('Password reset link sent to your email')
+        setShowForgotPassword(false)
+      } else {
+        setError(data.message || 'Failed to send reset email')
+      }
+    } catch (err) {
+      setError('An error occurred while processing your request')
+      console.error('Forgot password error:', err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const toggleLoginMethod = () => {
     setLoginMethod(prev => prev === 'email' ? 'phone' : 'email')
     setFormData(prev => ({
@@ -120,7 +174,7 @@ export default function Login() {
                 <div className="conatact-box common-contact-inner position-relative">
                   <div className="section-title mb-40">
                     <h5 className="p1-clr text-center wow fadeInLeft" data-wow-delay="0.4s">
-                      Sign In
+                      {showForgotPassword ? 'Forgot Password' : 'Sign In'}
                     </h5>
                   </div>
                   {error && (
@@ -128,83 +182,135 @@ export default function Login() {
                       {error}
                     </div>
                   )}
-                  <form onSubmit={handleSubmit} className="row g-xl-4 g-3">
-                    {loginMethod === 'email' ? (
+                  {successMessage && (
+                    <div className="alert alert-success mb-3">
+                      {successMessage}
+                    </div>
+                  )}
+
+                  {showForgotPassword ? (
+                    <form onSubmit={handleForgotPassword} className="row g-xl-4 g-3">
                       <div className="col-lg-12">
                         <input 
                           type="email" 
                           name="email"
-                          placeholder="E-mail" 
-                          value={formData.email}
-                          onChange={handleChange}
-                          required={loginMethod === 'email'}
+                          placeholder="Enter your email" 
+                          value={forgotPasswordEmail}
+                          onChange={(e) => setForgotPasswordEmail(e.target.value)}
+                          required
                         />
                       </div>
-                    ) : (
-                      <div className="col-lg-12">
-                        <input 
-                          type="tel" 
-                          name="phoneNumber"
-                          placeholder="Phone Number" 
-                          value={formData.phoneNumber}
-                          onChange={handleChange}
-                          required={loginMethod === 'phone'}
-                        />
-                      </div>
-                    )}
-                    <div className="col-lg-12">
-                      <input 
-                        type="password" 
-                        name="password"
-                        placeholder="Password" 
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-lg-12 text-center">
-                      <button 
-                        type="button" 
-                        className="text-primary mb-2 hover:underline"
-                        onClick={toggleLoginMethod}
-                      >
-                        {loginMethod === 'email' 
-                          ? 'Use phone number instead' 
-                          : 'Use email instead'}
-                      </button>
-                    </div>
-                    <div className="col-lg-12 text-center">
-                      <button 
-                        type="submit" 
-                        className="cmn-btn col-lg-12 text-capitalize my-1"
-                        disabled={isLoading}
-                      >
-                        {isLoading ? 'Signing In...' : 'Sign In'}
-                      </button>
-                    </div>
-                    <div className="col-lg-12 text-center">
-                      <p className="mx-4" style={{color: "black"}}>or sign in with</p>
-                      <div className="d-flex justify-content-center gap-2">
+                      <div className="col-lg-12 text-center">
                         <button 
-                          onClick={() => googleLogin()}
-                          className="cmn-btn text-capitalize bg-danger border-radius p-0"
-                          style={{width: '40px', height: '40px'}}
+                          type="submit" 
+                          className="cmn-btn col-lg-12 text-capitalize my-1"
                           disabled={isLoading}
                         >
-                          <i className="fab fa-google p-2"></i>
+                          {isLoading ? 'Sending...' : 'Send Reset Link'}
                         </button>
                       </div>
-                    </div>
-                    <div className="col-lg-12 mt-3 text-center">
-                      <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
-                      <Link 
-                        href="/register" 
-                        className="text-success hover:underline"
-                      >
-                        Sign Up
-                      </Link>
-                    </div>
-                  </form>
+                      <div className="col-lg-12 text-center">
+                        <button 
+                          type="button" 
+                          className="text-primary hover:underline"
+                          onClick={() => {
+                            setShowForgotPassword(false)
+                            setError('')
+                            setSuccessMessage('')
+                          }}
+                        >
+                          Back to Login
+                        </button>
+                      </div>
+                    </form>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="row g-xl-4 g-3">
+                      {loginMethod === 'email' ? (
+                        <div className="col-lg-12">
+                          <input 
+                            type="email" 
+                            name="email"
+                            placeholder="E-mail" 
+                            value={formData.email}
+                            onChange={handleChange}
+                            required={loginMethod === 'email'}
+                          />
+                        </div>
+                      ) : (
+                        <div className="col-lg-12">
+                          <input 
+                            type="tel" 
+                            name="phoneNumber"
+                            placeholder="Phone Number" 
+                            value={formData.phoneNumber}
+                            onChange={handleChange}
+                            required={loginMethod === 'phone'}
+                          />
+                        </div>
+                      )}
+                      <div className="col-lg-12">
+                        <input 
+                          type="password" 
+                          name="password"
+                          placeholder="Password" 
+                          value={formData.password}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="col-lg-12 text-center">
+                        <button 
+                          type="button" 
+                          className="text-primary mb-2 hover:underline"
+                          onClick={() => setShowForgotPassword(true)}
+                        >
+                          Forgot Password?
+                        </button>
+                      </div>
+                      <div className="col-lg-12 text-center">
+                        <button 
+                          type="button" 
+                          className="text-primary mb-2 hover:underline"
+                          onClick={toggleLoginMethod}
+                        >
+                          {loginMethod === 'email' 
+                            ? 'Use phone number instead' 
+                            : 'Use email instead'}
+                        </button>
+                      </div>
+                      <div className="col-lg-12 text-center">
+                        <button 
+                          type="submit" 
+                          className="cmn-btn col-lg-12 text-capitalize my-1"
+                          disabled={isLoading}
+                        >
+                          {isLoading ? 'Signing In...' : 'Sign In'}
+                        </button>
+                      </div>
+                      <div className="col-lg-12 text-center">
+                        <p className="mx-4" style={{color: "black"}}>or sign in with</p>
+                        <div className="d-flex justify-content-center gap-2">
+                          <button 
+                            onClick={() => googleLogin()}
+                            className="cmn-btn text-capitalize bg-danger border-radius p-0"
+                            style={{width: '40px', height: '40px'}}
+                            disabled={isLoading}
+                          >
+                            <i className="fab fa-google p-2"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div className="col-lg-12 mt-3 text-center">
+                        <span className="me-2" style={{color: "black"}}>Don't have an account?</span>
+                        <Link 
+                          href="/register" 
+                          className="text-success hover:underline"
+                        >
+                          Sign Up
+                        </Link>
+                      </div>
+                    </form>
+                  )}
                 </div>
               </div>
             </div>
