@@ -27,13 +27,13 @@ const ScrollToTop = () => {
 
   return (
     <>
-      <button
+      {/* <button
         className={`scrollToTop d-none d-md-flex d-center ${sticky && "active"}`}
         onClick={scrollTop}
         style={{cursor: "pointer"}}
         aria-label="scroll Bar Button">
         <i className="mat-icon fas fa-angle-double-up"></i>
-      </button>
+      </button> */}
     </>
   );
 };
